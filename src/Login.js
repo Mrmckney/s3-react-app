@@ -1,20 +1,35 @@
-import { useState } from "react"
+import React, { useState } from 'react'
 
-function Login() {
+export default function Login() {
+  const [user, setUser] = useState({})
+  const [status, setStatus] = useState('login')
 
-    const [email, setEmail] = useState('')
+  const handleUserForm = e => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
 
-    return(
-        <>
-            <h2>Login</h2>
-            <input 
-                type='email' 
-                name='email' 
-                placeholder='Your email here'  
-            />
-            <button type="submit">Sign in</button>
-        </>
-    )
+  const handleUserLogin = () => {
+    fetch('http://localhost:5000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+    .then(res => console.log(res))
+      // .then(response => response.status == 400 ? setStatus('Not allowed') : setStatus('allowed'))
+      .catch(err => console.log(err))
+  }
+
+  return (
+    <>
+      <h2>Sign in form</h2>
+      <input type='email' name='email' onChange={handleUserForm} />
+      <input type='password' name='password' onChange={handleUserForm} />
+      <button type='submit' onClick={handleUserLogin}>
+        Sign Me in!
+      </button>
+      <small>{status}</small>
+    </>
+  )
 }
-
-export default Login
