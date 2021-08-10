@@ -31,10 +31,30 @@ export default function Signup() {
   return (
     <>
       <h2>Sign up here</h2>
-      <input type='text' name='fname' placeholder='First name' onChange={handleUserForm} />
-      <input type='text' name='lname' placeholder='Last name' onChange={handleUserForm} />
-      <input type='email' name='email' placeholder='Your email here' onChange={handleUserForm} />
-      <input type='password' name='password' placeholder='your Password here' onChange={handleUserForm} />
+      <input 
+        type='text' 
+        name='fname' 
+        placeholder='First name' 
+        onChange={handleUserForm} 
+      />
+      <input 
+        type='text' 
+        name='lname' 
+        placeholder='Last name' 
+        onChange={handleUserForm} 
+      />
+      <input 
+        type='email' 
+        name='email' 
+        placeholder='Your email here' 
+        onChange={handleUserForm} 
+      />
+      <input 
+        type='password' 
+        name='password' 
+        placeholder='your Password here' 
+        onChange={handleUserForm} 
+      />
       <button type='submit' onClick={handleUserPost}>
         Sign me up!
       </button>
@@ -42,9 +62,9 @@ export default function Signup() {
         allUsers.map(eachUser => {
           return (
             <>
-              <span> {eachUser.fname}</span>
-              <span> {eachUser.lname}</span>
-              <span> {eachUser.email}</span>
+              <span>{eachUser.fname}</span>
+              <span>{eachUser.lname}</span>
+              <span>{eachUser.email}</span>
               <hr />
             </>
           )
