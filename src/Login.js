@@ -1,6 +1,19 @@
+import { useState } from "react"
+
 function Login() {
+
+    const [email, setEmail] = useState('')
+
     return(
-        <h1>Hello</h1>
+        <>
+            <h2>Login</h2>
+            <input 
+                type='email' 
+                name='email' 
+                placeholder='Your email here'  
+            />
+            <button type="submit">Sign in</button>
+        </>
     )
 }
 

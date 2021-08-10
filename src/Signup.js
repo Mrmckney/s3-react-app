@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
 export default function Signup() {
+    
   const [user, setUser] = useState({})
-  const [allUsers, setUsers] = useState([])
+  const [allUsers, setAllUsers] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:5000/users')
       .then(rawData => rawData.json())
-      .then(allUsers => setUsers(allUsers))
+      .then(allUsers => setAllUsers(allUsers))
       .catch(err => console.log(err))
   }, [])
 
