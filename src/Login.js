@@ -16,17 +16,24 @@ export default function Login() {
       },
       body: JSON.stringify(user),
     })
-    .then(res => console.log(res))
-      // .then(response => response.status == 400 ? setStatus('Not allowed') : setStatus('allowed'))
+      .then(res => (res.ok ? setStatus('User logged in now') : setStatus('authentication failed')))
       .catch(err => console.log(err))
   }
 
   return (
     <>
       <h2>Sign in form</h2>
-      <input type='email' name='email' onChange={handleUserForm} />
-      <input type='password' name='password' onChange={handleUserForm} />
-      <button type='submit' onClick={handleUserLogin}>
+      <input 
+        type='email' 
+        name='email' 
+        onChange={handleUserForm} 
+      />
+      <input 
+        type='password' 
+        name='password' 
+        onChange={handleUserForm} 
+      />
+      <button type='submit' onClick={handleUserLogin} disabled={user.email && user.password ? false : true}>
         Sign Me in!
       </button>
       <small>{status}</small>
