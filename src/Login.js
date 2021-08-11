@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 export default function Login() {
+
+  let history = useHistory()
+
   const [user, setUser] = useState({})
-  const [status, setStatus] = useState('Login')
 
   const handleUserForm = e => {
     setUser({ ...user, [e.target.name]: e.target.value })
@@ -16,7 +19,9 @@ export default function Login() {
       },
       body: JSON.stringify(user),
     })
-      .then(res => (res.ok ? setStatus('User logged in now') : setStatus('authentication failed')))
+      .then(rawData => rawData.json())
+      .then(data => localStorage.setItem('user', JSON.stringify(data)))
+      .then(sendUser => history.push('/loggedin'))
       .catch(err => console.log(err))
   }
 
@@ -42,7 +47,6 @@ export default function Login() {
       >
         Sign Me in!
       </button>
-      <small>{status}</small>
     </>
   )
 }
