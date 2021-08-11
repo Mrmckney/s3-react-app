@@ -20,11 +20,10 @@ export default function Signup() {
       },
       body: JSON.stringify(user),
     })
-      .then(response => response.json())
-      .then(data => console.log('Success: ', data))
+      .then(rawData => rawData.json())
+      .then(data => localStorage.setItem('user', JSON.stringify(data)))
+      .then(() => window.location.reload(false))
       .catch(err => console.log(err))
-
-      window.location.reload(false)
   }
 
   const handleUserForm = e => {
@@ -55,7 +54,7 @@ export default function Signup() {
       <input 
         type='password' 
         name='password' 
-        placeholder='your Password here' 
+        placeholder='Your password here' 
         onChange={handleUserForm} 
       />
       <button 
@@ -73,13 +72,20 @@ export default function Signup() {
         allUsers.map(eachUser => {
           return (
             <div key={eachUser._id}>
-              <span>{eachUser.fname}</span>
-              <span>{eachUser.lname}</span>
-              <span>{eachUser.email}</span>
+              <span> {eachUser.fname}</span>
+              <span> {eachUser.lname}</span>
+              <span> {eachUser.email}</span>
               <hr />
             </div>
           )
         })}
+      <button onClick={() => localStorage.clear()}>clear local storage</button>
+      <button 
+        onClick={() => {
+        console.log(JSON.parse(localStorage.getItem('user')))
+      }}>
+        Get local storage
+      </button>
     </>
   )
 }

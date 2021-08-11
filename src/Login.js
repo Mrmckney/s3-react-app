@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export default function Login() {
   const [user, setUser] = useState({})
-  const [status, setStatus] = useState('login')
+  const [status, setStatus] = useState('Login')
 
   const handleUserForm = e => {
     setUser({ ...user, [e.target.name]: e.target.value })
@@ -26,14 +26,20 @@ export default function Login() {
       <input 
         type='email' 
         name='email' 
+        placeholder="Your email here"
         onChange={handleUserForm} 
       />
       <input 
         type='password' 
         name='password' 
+        placeholder="Your password here"
         onChange={handleUserForm} 
       />
-      <button type='submit' onClick={handleUserLogin} disabled={user.email && user.password ? false : true}>
+      <button 
+        type='submit' 
+        onClick={handleUserLogin} 
+        disabled={user.email && user.password ? false : true}
+      >
         Sign Me in!
       </button>
       <small>{status}</small>
