@@ -6,13 +6,14 @@ export default function Login() {
   let history = useHistory()
 
   const [user, setUser] = useState({})
+  const [status, setStatus] = useState(null)
 
   const handleUserForm = e => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
 
   const handleUserLogin = () => {
-    fetch('http://localhost:5000/login', {
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +23,7 @@ export default function Login() {
       .then(rawData => rawData.json())
       .then(data => localStorage.setItem('user', JSON.stringify(data)))
       .then(sendUser => history.push('/loggedin'))
-      .catch(err => console.log(err))
+      .catch(err => setStatus('Login Attempt Failed ', err))
   }
 
   return (
@@ -47,6 +48,7 @@ export default function Login() {
       >
         Sign Me in!
       </button>
+      <span>{status}</span>
     </>
   )
 }
