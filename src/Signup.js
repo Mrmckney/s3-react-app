@@ -58,13 +58,13 @@ export default function Signup() {
         onChange={handleUserForm} 
       />
       <button 
-      type='submit' 
-      disabled={
-          user.email && 
-          user.password && 
-          user.lname && 
-          user.fname ? false : true} 
-          onClick={handleUserPost}
+        type='submit' 
+        disabled={
+            user.email && 
+            user.password && 
+            user.lname && 
+            user.fname ? false : true} 
+            onClick={handleUserPost}
         >
         Sign me up!
       </button>
